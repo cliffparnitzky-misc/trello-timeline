@@ -1,0 +1,32 @@
+html, body {
+	font-family: verdana;
+	font-size: 0.8em;
+	color: #444444;
+}
+a {
+	color: #444444;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+#login-form,
+#logout-form {
+    margin: 40px auto 0;
+    width: 200px;
+}
+#login-form .error {
+    color: #c10000;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+#login-form input,
+#login-form label,
+#logout-form input {
+    margin: 5px auto;
+    padding: 5px;
+    width: -moz-available;
+    width: -webkit-fill-available;
+}

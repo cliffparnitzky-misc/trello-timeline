@@ -1,0 +1,50 @@
+.menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	z-index: 9999;
+}
+
+/* custom styles for individual items, load this after vis.css */
+.vis-timeline .vis-item a {
+	color: #ffffff;
+	font-size: 10px;
+	text-decoration: none;
+}
+.vis-timeline .vis-item.blue {
+	background-color: #0079BF;
+	border-color: #0079BF;
+}
+.vis-timeline .vis-item.green {
+	background-color: #1E9F49;
+	border-color: #1E9F49;
+}
+.vis-timeline .vis-item.orange {
+	background-color: #DF7A16;
+	border-color: #DF7A16;
+}
+.vis-timeline .vis-item.red {
+	background-color: #C24034;
+	border-color: #C24034;
+}
+.vis-timeline .vis-item.grey {
+	background-color: #808080;
+	border-color: #808080;
+}
+.vis-timeline .vis-item.purple {
+	background-color: #8B5798;
+	border-color: #8B5798;
+}
+.vis-timeline .vis-item.sky {
+	background-color: #00AECC;
+	border-color: #00AECC;
+}
+.vis-timeline .vis-item.pink {
+	background-color: #CD5A91;
+	border-color: #CD5A91;
+}
+.vis-timeline .vis-item.lime {
+	background-color: #4BBF6B;
+	border-color: #4BBF6B;
+}
