@@ -1,6 +1,4 @@
-<?php
-require_once("includes/login.inc");
-?>
+<?php require_once("includes/login.inc"); ?>
 <?php if ($_SESSION['login']): ?>
 <!DOCTYPE html>
 <html>

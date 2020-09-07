@@ -1,6 +1,5 @@
-<?php
-require_once("includes/login.inc");
-?>
+<?php require_once("includes/login.inc"); ?>
+<?php require_once("includes/curl.inc"); ?>
 <?php if ($_SESSION['login']): ?>
 <?php $pageTitle = "Timeline (grouped by board)"; ?>
 <?php include "includes/header.inc"; ?>
@@ -17,8 +16,7 @@ require_once("includes/login.inc");
 
 <?php
 $jsonBoardsUrl = "https://trello.com/1/members/" . TRELLO_MEMBER . "/boards?key=" . TRELLO_KEY . "&token=" . TRELLO_TOKEN;
-$jsonBoards = file_get_contents($jsonBoardsUrl, 0, null, null);
-$jsonBoardsOutput = json_decode($jsonBoards);
+$jsonBoardsOutput = json_decode(executeRESTCall('GET', $jsonBoardsUrl));
 ?>
 <?php $boards = array(); ?>
 <?php $boardIdCounter = 1; ?>
@@ -37,8 +35,7 @@ $jsonBoardsOutput = json_decode($jsonBoards);
 <?php if (!$board->closed): ?>
 	<?php
 	$jsonCardsUrlTmp = str_replace("[BOARD_ID]", $board->id, $jsonCardsUrl);
-	$jsonCards = file_get_contents($jsonCardsUrlTmp, 0, null, null);
-	$jsonCardsOutput = json_decode($jsonCards);
+	$jsonCardsOutput = json_decode(executeRESTCall('GET', $jsonCardsUrlTmp));
 	?>
 	<?php foreach ($jsonCardsOutput as $card) : ?>
 		<?php if ($card->due != null): ?>

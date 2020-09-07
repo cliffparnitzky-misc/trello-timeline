@@ -1,6 +1,5 @@
-<?php
-require_once("includes/login.inc");
-?>
+<?php require_once("includes/login.inc"); ?>
+<?php require_once("includes/curl.inc"); ?>
 <?php if ($_SESSION['login']): ?>
 <?php
 if ($_GET['boards'] != "") {
@@ -33,14 +32,12 @@ if ($_GET['boards'] != "") {
 	<?php foreach ($boardIds as $boardId) : ?>
 		<?php
 		$jsonBoardUrl = "https://trello.com/1/boards/" . $boardId . "?key=" . TRELLO_KEY . "&token=" . TRELLO_TOKEN;
-		$jsonBoard = file_get_contents($jsonBoardUrl, 0, null, null);
-		$jsonBoardOutput = json_decode($jsonBoard);
+		$jsonBoardOutput = json_decode(executeRESTCall('GET', $jsonBoardUrl));
 		
 		$boards[$jsonBoardOutput->id] = array('visId' => $boardIdCounter, 'name' => $jsonBoardOutput->name, 'hasCards' => false, 'obj' => $jsonBoardOutput);
 		
 		$jsonCardsUrl = "https://trello.com/1/boards/" . $boardId . "/cards/open?key=" . TRELLO_KEY . "&token=" . TRELLO_TOKEN;
-		$jsonCards = file_get_contents($jsonCardsUrl, 0, null, null);
-		$jsonCardsOutput = json_decode($jsonCards);
+		$jsonCardsOutput = json_decode(executeRESTCall('GET', $jsonCardsUrl));
 		?>
 		<?php foreach ($jsonCardsOutput as $card) : ?>
 			<?php if ($card->due != null): ?>

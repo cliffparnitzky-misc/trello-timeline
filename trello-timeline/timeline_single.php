@@ -1,6 +1,5 @@
-<?php
-require_once("includes/login.inc");
-?>
+<?php require_once("includes/login.inc"); ?>
+<?php require_once("includes/curl.inc"); ?>
 <?php if ($_SESSION['login']): ?>
 <?php
 if ($_GET['board'] != "") {
@@ -29,12 +28,10 @@ if ($_GET['board'] != "") {
 	var data = new vis.DataSet([
 	<?php
 	$jsonBoardUrl = "https://trello.com/1/boards/" . TRELLO_BOARD_ID . "?key=" . TRELLO_KEY . "&token=" . TRELLO_TOKEN;
-	$jsonBoard = file_get_contents($jsonBoardUrl, 0, null, null);
-	$jsonBoardOutput = json_decode($jsonBoard);
+	$jsonBoardOutput = json_decode(executeRESTCall('GET', $jsonBoardUrl));
 	
 	$jsonCardsUrl = "https://trello.com/1/boards/" . TRELLO_BOARD_ID . "/cards/open?key=" . TRELLO_KEY . "&token=" . TRELLO_TOKEN;
-	$jsonCards = file_get_contents($jsonCardsUrl, 0, null, null);
-	$jsonCardsOutput = json_decode($jsonCards);
+	$jsonCardsOutput = json_decode(executeRESTCall('GET', $jsonCardsUrl));
 	?>
 	<?php foreach ($jsonCardsOutput as $card) : ?>
 		<?php if ($card->due != null): ?>
